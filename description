@@ -1,0 +1,7 @@
+This file is to help upload folder of run_pod_trainer.
+
+Once you login and deploy in run pod gpus, copy this repository through ssh:
+i.e: scp -r trainer/ root@213.173.110.70:/root/
+
+Modify config files and run the sh.
+  
