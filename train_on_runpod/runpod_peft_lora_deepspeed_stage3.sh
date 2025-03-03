@@ -1,0 +1,39 @@
+accelerate launch --config_file "configs/runpod_deepspeed_config_z3_lora.yaml"  train.py \
+--seed 100 \
+--model_name_or_path "mistralai/Mistral-Nemo-Instruct-2407" \
+--dataset_name "/home/erik/Desktop/AI_projects/1_SpicyCompaign/dev/data/simulated_convs/clean_conversations" \
+--chat_template_format "chatml" \
+--add_special_tokens False \
+--append_concat_token False \
+--splits "train,test" \
+--max_seq_len 8192 \
+--num_train_epochs 1 \
+--logging_steps 5 \
+--log_level "info" \
+--logging_strategy "steps" \
+--eval_strategy "epoch" \
+--save_strategy "epoch" \
+--push_to_hub \
+--hub_private_repo True \
+--hub_strategy "every_save" \
+--bf16 True \
+--packing True \
+--learning_rate 1e-4 \
+--lr_scheduler_type "cosine" \
+--weight_decay 1e-4 \
+--warmup_ratio 0.0 \
+--max_grad_norm 1.0 \
+--output_dir "nemo-sft-qlora-dsz3" \
+--per_device_train_batch_size 8 \
+--per_device_eval_batch_size 8 \
+--gradient_accumulation_steps 4 \
+--gradient_checkpointing True \
+--use_reentrant True \
+--dataset_text_field "content" \
+--use_flash_attn True \
+--use_peft_lora True \
+--lora_r 128 \
+--lora_alpha 256 \
+--lora_dropout 0.1 \
+--lora_target_modules "all-linear" \
+--use_4bit_quantization False
